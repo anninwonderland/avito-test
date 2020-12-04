@@ -6,7 +6,7 @@
 
 <script>
 
-import Home from "@/views/Home";
+import Home from '@/views/Home'
 
 export default {
   name: 'App',

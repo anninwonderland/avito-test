@@ -1,10 +1,10 @@
 <template>
   <div class="home__container">
-    <el-row class="home__header" :gutter="20">
-      <el-col :span="10" :offset="2" :xs="{span: 20}">
+    <el-row class="home__header">
+      <el-col :span="9" :offset="2" :xs="{span: 20}">
         <h1 class="home__header__title">Конструктор баннеров</h1>
       </el-col>
-      <el-col :span="10" :xs="{span: 20, offset: 2}">
+      <el-col :span="10" :offset="1" :xs="{span: 20, offset: 2}">
         <p class="home__header__caption">Тестовое задание на стажировку в Авито.</p>
         <p class="home__header__caption">Сделала Ракина А.С. :)</p>
       </el-col>
@@ -12,21 +12,21 @@
 
     <el-row class="home__main">
       <el-col :span="10" :offset="2" :xs="{span: 20}">
-        <Preview />
+        <Preview/>
       </el-col>
       <el-col :span="10" :xs="{span: 20, offset: 2}">
-        <Form />
+        <Form/>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import Preview from "@/components/Preview";
-import Form from '@/components/Form';
+import Preview from '@/components/Preview'
+import Form from '@/components/Form'
 
 export default {
-name: "Home",
+  name: "Home",
   components: {
     Preview,
     Form
@@ -66,7 +66,8 @@ name: "Home",
 }
 
 .home__main {
-
+  min-height: 80vh;
+  margin-top: 40px;
 }
 
 @media (max-width: 768px) {
