@@ -55,10 +55,7 @@
 <script>
 
 import { mapState, mapActions } from 'vuex'
-
-const hexRegExp = new RegExp('^#[0-9a-f]{3,6}$', 'i')
-const rgbRegExp = new RegExp('^rgb\\((25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?|[0-9]), ?(25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?|[0-9]), ?(25[0-5]|2[0-4][0-9]|1[0-9]?[0-9]?|[1-9][0-9]?|[0-9])\\)$', 'i')
-const gradientRegExp = new RegExp('^#[0-9a-f]{3,6}$', 'i')
+import regexp from '@/assets/regexp'
 
 export default {
   name: 'Form',
@@ -110,15 +107,15 @@ export default {
     validateColor: (rule, value, callback) => {
       if (value === '') {
         callback(new Error('Это обязательное поле'))
-      } else if (!hexRegExp.test(value) && !rgbRegExp.test(value)) {
-        callback(new Error('Допустимый формат: RGB / HEX'))
+      } else if (!regexp.HEX.test(value) && !regexp.RGBA.test(value)) {
+        callback(new Error('Допустимый формат: RGB(a) или HEX'))
       } else {
         callback()
       }
     },
     validateImage: (rule, value, callback) => {
-      if (!gradientRegExp.test(value)) {
-        callback(new Error('Допустимый формат: url, dataURI или linear-gradient'))
+      if (!regexp.GRADIENT.test(value)) {
+        callback(new Error('Допустимый формат: url, dataURI или linear-gradient(℃, rgb, rgb, rgb)'))
       } else {
         callback()
       }

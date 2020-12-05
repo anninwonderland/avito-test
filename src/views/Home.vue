@@ -6,7 +6,7 @@
       </el-col>
       <el-col :span="10" :offset="1" :xs="{span: 20, offset: 2}">
         <p class="home__header__caption">Тестовое задание на стажировку в Авито.</p>
-        <p class="home__header__caption">Сделала Ракина А.С. :)</p>
+        <p class="home__header__caption">Сделала Ракина А.С. 😛</p>
       </el-col>
     </el-row>
 
