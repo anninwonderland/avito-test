@@ -55,7 +55,7 @@
 <script>
 
 import { mapState, mapActions } from 'vuex'
-import regexp from '@/assets/regexp'
+import regexp from '@/assets/constants/regexp'
 
 export default {
   name: 'Form',
@@ -114,7 +114,7 @@ export default {
       }
     },
     validateImage: (rule, value, callback) => {
-      if (!regexp.GRADIENT.test(value)) {
+      if (!regexp.GRADIENT.test(value) && !regexp.URL.test(value) && !regexp.DATA_URI.test(value)) {
         callback(new Error('Допустимый формат: url, dataURI или linear-gradient(℃, rgb, rgb, rgb)'))
       } else {
         callback()
