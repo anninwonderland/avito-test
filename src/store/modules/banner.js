@@ -1,14 +1,11 @@
 const state = () => ({
     text: null,
-    img: null,
     link: '#',
-    size: {
-      width: 240,
-      height: 320,
-    },
     style: {
-        bgColor: null,
-        bgGradient: null
+        width: 240,
+        height: 320,
+        'background-color': '#EEEEEE',
+        'background-image': null
     }
 })
 

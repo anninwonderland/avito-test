@@ -10,11 +10,11 @@
       </el-col>
     </el-row>
 
-    <el-row class="home__main">
-      <el-col :span="10" :offset="2" :xs="{span: 20}">
+    <el-row class="home__main" type="flex">
+      <el-col :span="7" :offset="4" :xs="{span: 20, offset: 2}" :sm="{span: 7, offset: 4}">
         <Preview/>
       </el-col>
-      <el-col :span="10" :xs="{span: 20, offset: 2}">
+      <el-col :span="8" :offset="1" :xs="{span: 20, offset: 2}" :sm="{span: 8, offset: 1}">
         <Form/>
       </el-col>
     </el-row>
@@ -68,6 +68,8 @@ export default {
 .home__main {
   min-height: 80vh;
   margin-top: 40px;
+
+  flex-wrap: wrap;
 }
 
 @media (max-width: 768px) {
