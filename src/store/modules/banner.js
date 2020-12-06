@@ -21,11 +21,17 @@ const actions = {
 const mutations = {
     SET_BANNER_PROP: (state, payload) => {
         const { property, value } = payload
-        state[property] = value
+        const propsArr = property.split('.')
+
+        propsArr.reduce((k, key, index) => {
+            if (index < propsArr.length - 1) {
+                return k[key]
+            } else {
+                k[key] = value
+            }
+        }, state)
     }
 }
-
-
 
 export default {
     namespaced: true,

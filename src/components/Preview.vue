@@ -28,10 +28,12 @@ export default {
   },
   methods: {
     renderBanner() {
+      console.log('render')
       document.getElementById('banner').style.height = this.banner.style.height + 'px'
       document.getElementById('banner').style.width = this.banner.style.width + 'px'
 
       document.getElementById('banner').style['background-color'] = this.banner.style['background-color']
+      document.getElementById('banner').style['background-image'] = this.banner.style['background-image']
     },
     viewBanner() {
 

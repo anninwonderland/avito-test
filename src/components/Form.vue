@@ -44,6 +44,7 @@
                 type="textarea"
                 :rows="2"
                 placeholder="url, dataURI или linear-gradient"
+                clearable
                 v-model="form.style['background-image']"></el-input>
           </el-form-item>
         </el-col>
@@ -64,7 +65,7 @@ export default {
       form: null,
       rules: {
         text: [
-          { required: true, message: 'Это обязательное поле', trigger: 'blur' }
+          { required: true, validator: this.validateText, trigger: 'blur' }
         ],
         'style.height': [
           { required: true, validator: this.validateNumber, trigger: 'blur' }
@@ -93,33 +94,60 @@ export default {
     ...mapActions({
       setBannerProp: 'banner/setBannerProp',
     }),
-    validateNumber: (rule, value, callback) => {
+
+    validateText(rule, value, callback) {
       if (value === '') {
-        callback(new Error('Это обязательное поле'))
-      } else if (value != parseInt(value)) {
-        callback(new Error('Введите целое число'))
-      } else if (value < 100 || value > 600) {
-        callback(new Error('Введите значение от 100px до 600px'))
+        return callback(new Error('Это обязательное поле'))
       } else {
-        callback()
+        this.setBannerProp({ property: rule.field, value })
+        return callback()
       }
     },
-    validateColor: (rule, value, callback) => {
+
+    validateNumber(rule, value, callback) {
       if (value === '') {
-        callback(new Error('Это обязательное поле'))
-      } else if (!regexp.HEX.test(value) && !regexp.RGBA.test(value)) {
-        callback(new Error('Допустимый формат: RGB(a) или HEX'))
-      } else {
-        callback()
+        return callback(new Error('Это обязательное поле'))
       }
+      if (value != parseInt(value)) {
+        return callback(new Error('Введите целое число'))
+      }
+      if (value < 100 || value > 600) {
+        return callback(new Error('Введите значение от 100px до 600px'))
+      }
+      this.setBannerProp({ property: rule.field, value })
+      return callback()
     },
-    validateImage: (rule, value, callback) => {
+
+    validateColor(rule, value, callback) {
+      if (value === '') {
+        return callback(new Error('Это обязательное поле'))
+      }
+      if (!regexp.HEX.test(value) && !regexp.RGBA.test(value)) {
+        return callback(new Error('Допустимый формат: RGB(a) или HEX'))
+      }
+      this.setBannerProp({ property: rule.field, value })
+      return callback()
+    },
+
+    validateImage(rule, value, callback) {
+      if (value === '') {
+        this.setBannerProp({ property: rule.field, value: value })
+        return callback()
+      }
       if (!regexp.GRADIENT.test(value) && !regexp.URL.test(value) && !regexp.DATA_URI.test(value)) {
-        callback(new Error('Допустимый формат: url, dataURI или linear-gradient(℃, rgb, rgb, rgb)'))
-      } else {
-        callback()
+        return callback(new Error('Допустимый формат: url, dataURI или linear-gradient(℃, rgb, rgb, rgb)'))
       }
+
+      this.setBannerProp({ property: rule.field, value: this.formatValue(value) })
+      return callback()
     },
+
+    formatValue(value) {
+      if (value.startsWith('linear-gradient')) {
+        return value
+      }
+      return `url(${value})`
+    }
   }
 }
 </script>
