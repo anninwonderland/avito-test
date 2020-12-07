@@ -43,7 +43,7 @@
             <el-input
                 type="textarea"
                 :rows="2"
-                placeholder="url, dataURI или linear-gradient"
+                placeholder="url, dataURI или gradient"
                 clearable
                 v-model="form.style['background-image']"></el-input>
           </el-form-item>
@@ -135,7 +135,7 @@ export default {
         return callback()
       }
       if (!regexp.GRADIENT.test(value) && !regexp.URL.test(value) && !regexp.DATA_URI.test(value)) {
-        return callback(new Error('Допустимый формат: url, dataURI или linear-gradient(℃, rgb, rgb, rgb)'))
+        return callback(new Error('Допустимый формат: url, dataURI, linear-gradient(℃, rgba), radial-gradient(circle, rgba)'))
       }
 
       this.setBannerProp({ property: rule.field, value: this.formatValue(value) })
@@ -143,7 +143,7 @@ export default {
     },
 
     formatValue(value) {
-      if (value.startsWith('linear-gradient')) {
+      if (value.startsWith('linear-gradient') || value.startsWith('radial-gradient')) {
         return value
       }
       return `url(${value})`

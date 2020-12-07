@@ -30,6 +30,8 @@ const mutations = {
                 k[key] = value
             }
         }, state)
+
+        console.log(property, value)
     }
 }
 

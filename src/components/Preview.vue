@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     renderBanner() {
-      console.log('render')
       document.getElementById('banner').style.height = this.banner.style.height + 'px'
       document.getElementById('banner').style.width = this.banner.style.width + 'px'
 
@@ -52,13 +51,17 @@ export default {
 
 .banner {
   border-radius: 2%;
+  border: 1px solid #DCDFE6;
 
   max-width: 100%;
-
   display: flex;
   align-items: flex-end;
 
   text-decoration: none;
+
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .banner__text {
@@ -70,13 +73,15 @@ export default {
   white-space: pre-line;
   word-wrap: break-word;
 
-  padding: 0 16px;
-  margin: 24px 0;
+  padding: 0 ;
+  margin: 24px;
   width: calc(100% - 24px);
+  max-width: calc(100% - 24px);
 
+  display: block;
+  display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 
