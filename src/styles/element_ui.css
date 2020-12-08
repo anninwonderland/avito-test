@@ -1,0 +1,18 @@
+/* override element-ui styles */
+
+.home__btn.el-button+.home__btn.el-button {
+    margin-left: 0;
+}
+
+.home__btn i {
+    margin-right: 6px;
+}
+
+.home__btn span {
+    max-width: 100%;
+    margin-left: 12px;
+
+    white-space: pre-line;
+    line-height: 18px;
+    text-align: left;
+}
