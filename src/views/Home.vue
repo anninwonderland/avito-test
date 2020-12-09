@@ -18,17 +18,6 @@
         <Form/>
       </el-col>
     </el-row>
-    <el-row>
-      <el-col :span="16" :offset="4" class="home__btns__container">
-          <el-button
-              v-for="(btn, index) in buttons" :key="index"
-              type="primary"
-              class="home__btn"
-              :icon="btn.icon"
-              @click.prevent="btn.action"
-          >{{ btn.text }}</el-button>
-      </el-col>
-    </el-row>
   </div>
 </template>
 
@@ -38,41 +27,10 @@ import Form from '@/components/Form'
 
 export default {
   name: "Home",
-  data() {
-    return {
-      buttons: [
-        {
-          text: 'Сохранить как png',
-          action: this.saveToPng,
-          icon: 'el-icon-download'
-        },
-        {
-          text: 'Скопировать html-разметку в буфер обмена',
-          action: this.copyToHTML,
-          icon: 'el-icon-edit-outline'
-        }, {
-          text: 'Скопировать JSON-конфигурацию в буфер обмена',
-          action: this.copyToJSON,
-          icon: 'el-icon-s-operation'
-        }
-      ]
-    }
-  },
   components: {
     Preview,
     Form
   },
-  methods: {
-    saveToPng() {
-      console.log('save to png')
-    },
-    copyToHTML() {
-
-    },
-    copyToJSON() {
-
-    }
-  }
 }
 </script>
 
@@ -108,40 +66,12 @@ export default {
 }
 
 .home__main {
-  margin-top: 40px;
-}
-
-.home__btns__container {
-  margin-top: 20px;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.home__btn {
-  margin-right: 12px;
-  margin-bottom: 12px;
-  margin-left: 0;
-  padding: 10px 14px;
-
-  display: flex;
-  align-items: center;
-}
-
-.home__btn:last-child {
-  margin-right: 0;
+  margin: 40px 0 60px;
 }
 
 @media (max-width: 768px) {
   .home__header__caption {
     text-align: start;
-  }
-  .home__btn {
-    width: 100%;
-
-    margin-right: 0;
-    margin-left: 0;
   }
 }
 </style>

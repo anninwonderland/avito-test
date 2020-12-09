@@ -1,14 +1,14 @@
 /* override element-ui styles */
 
-.home__btn.el-button+.home__btn.el-button {
+.form__btn.el-button+.form__btn.el-button {
     margin-left: 0;
 }
 
-.home__btn i {
+.form__btn i {
     margin-right: 6px;
 }
 
-.home__btn span {
+.form__btn span {
     max-width: 100%;
     margin-left: 12px;
 

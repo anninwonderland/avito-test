@@ -1,18 +1,28 @@
+import cloneDeep from 'lodash.clonedeep'
+
 const state = () => ({
-    text: null,
+    text: '',
     link: '#',
     style: {
         width: 240,
         height: 320,
         'background-color': '#EEEEEE',
-        'background-image': null
+        'background-image': ''
     }
 })
+
+const basicBanner = cloneDeep(state)
 
 const actions = {
     setBannerProp ({ commit }, payload) {
         return new Promise( resolve => {
             commit('SET_BANNER_PROP', payload)
+            resolve()
+        })
+    },
+    resetBanner({ commit }) {
+        return new Promise( resolve => {
+            commit('RESET_BANNER')
             resolve()
         })
     },
@@ -30,8 +40,10 @@ const mutations = {
                 k[key] = value
             }
         }, state)
+    },
 
-        console.log(property, value)
+    RESET_BANNER_PROP: (state) => {
+        state.banner = basicBanner
     }
 }
 

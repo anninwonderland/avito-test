@@ -49,6 +49,17 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col class="form__btns__container">
+          <el-button
+              v-for="(btn, index) in buttons" :key="index"
+              type="primary"
+              class="form__btn"
+              :icon="btn.icon"
+              @click.prevent="submit(btn.action)"
+          >{{ btn.text }}</el-button>
+        </el-col>
+      </el-row>
     </el-form>
   </div>
 </template>
@@ -57,12 +68,29 @@
 
 import { mapState, mapActions } from 'vuex'
 import regexp from '@/assets/constants/regexp'
+import cloneDeep from 'lodash.clonedeep'
 
 export default {
   name: 'Form',
   data() {
     return {
       form: null,
+      buttons: [
+        {
+          text: 'Сохранить как png',
+          action: this.saveToPng,
+          icon: 'el-icon-download'
+        },
+        {
+          text: 'Скопировать html-разметку в буфер обмена',
+          action: this.copyToHTML,
+          icon: 'el-icon-edit-outline'
+        }, {
+          text: 'Скопировать JSON-конфигурацию в буфер обмена',
+          action: this.copyToJSON,
+          icon: 'el-icon-s-operation'
+        }
+      ],
       rules: {
         text: [
           { required: true, validator: this.validateText, trigger: 'blur' }
@@ -77,13 +105,13 @@ export default {
           { required: true, validator: this.validateColor, trigger: 'blur' }
         ],
         'style.background-image': [
-          { validator: this.validateImage, trigger: 'blur' }
+          { required: false, validator: this.validateImage, trigger: 'blur' }
         ]
       }
     }
   },
   created() {
-    this.form = JSON.parse(JSON.stringify(this.banner))
+    this.fillForm()
   },
   computed: {
     ...mapState({
@@ -93,7 +121,17 @@ export default {
   methods: {
     ...mapActions({
       setBannerProp: 'banner/setBannerProp',
+      resetBanner: 'banner/resetBanner',
     }),
+
+    fillForm() {
+      this.form = cloneDeep(this.banner)
+    },
+
+    resetForm() {
+      this.resetBanner()
+      this.fillForm()
+    },
 
     validateText(rule, value, callback) {
       if (value === '') {
@@ -147,11 +185,57 @@ export default {
         return value
       }
       return `url(${value})`
+    },
+
+    submit(cb) {
+      this.$refs.form.validate((valid) => {
+        return valid ? cb() : false
+      })
+
+    },
+    saveToPng() {
+      console.log('save to png')
+    },
+    copyToHTML() {
+      console.log('copy to html')
+    },
+    copyToJSON() {
+      console.log('copy to json')
     }
   }
 }
 </script>
 
 <style scoped>
+
+.form__btns__container {
+  margin-top: 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form__btn {
+  margin-right: 12px;
+  margin-bottom: 12px;
+  margin-left: 0;
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+}
+
+.form__btn:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 768px) {
+  .form__btn {
+    width: 100%;
+
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
 
 </style>

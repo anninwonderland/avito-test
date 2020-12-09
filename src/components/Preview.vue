@@ -44,7 +44,7 @@ export default {
 <style scoped>
 .banner__container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 
   margin-top: 40px;
 }
@@ -93,8 +93,6 @@ export default {
 
 @media (max-width: 768px) {
   .banner__container {
-    justify-content: center;
-
     margin-top: 0;
     margin-bottom: 40px;
   }
