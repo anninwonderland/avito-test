@@ -1,7 +1,7 @@
 import cloneDeep from 'lodash.clonedeep'
 
 const state = () => ({
-    text: '',
+    text: 'hello, world!',
     link: '#',
     style: {
         width: 240,

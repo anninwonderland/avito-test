@@ -9,11 +9,17 @@
 <script>
 
 import { mapState } from 'vuex'
+import * as htmlToImage from 'html-to-image'
+import { toPng } from 'html-to-image'
 
 export default {
   name: 'Preview',
   mounted() {
     this.renderBanner()
+
+    this.$root.$on('exportBanner', format => {
+      this.exportAs(format)
+    })
   },
   watch: {
     banner: {
@@ -36,6 +42,24 @@ export default {
     },
     viewBanner() {
 
+    },
+    exportAs(format) {
+      const node = document.getElementById('banner');
+
+      const self = this
+
+      htmlToImage.toPng(node)
+          .then((dataUrl) => {
+            self.download(dataUrl)
+          })
+    },
+    download(dataUrl) {
+      const a = document.createElement('a')
+      a.href = dataUrl
+      a.download = 'Banner'
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
     }
   }
 }

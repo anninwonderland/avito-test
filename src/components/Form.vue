@@ -56,7 +56,7 @@
               type="primary"
               class="form__btn"
               :icon="btn.icon"
-              @click.prevent="submit(btn.action)"
+              @click.prevent="submit(btn.format)"
           >{{ btn.text }}</el-button>
         </el-col>
       </el-row>
@@ -79,15 +79,18 @@ export default {
         {
           text: 'Сохранить как png',
           action: this.saveToPng,
+          format: 'PNG',
           icon: 'el-icon-download'
         },
         {
           text: 'Скопировать html-разметку в буфер обмена',
           action: this.copyToHTML,
+          format: 'HTML',
           icon: 'el-icon-edit-outline'
         }, {
           text: 'Скопировать JSON-конфигурацию в буфер обмена',
           action: this.copyToJSON,
+          format: 'JSON',
           icon: 'el-icon-s-operation'
         }
       ],
@@ -187,9 +190,12 @@ export default {
       return `url(${value})`
     },
 
-    submit(cb) {
+    submit(format) {
       this.$refs.form.validate((valid) => {
-        return valid ? cb() : false
+        if (valid) {
+          this.$root.$emit('exportBanner', format)
+        }
+          return valid
       })
 
     },
