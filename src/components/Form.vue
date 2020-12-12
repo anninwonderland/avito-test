@@ -16,14 +16,14 @@
         <el-col :span="11">
           <el-form-item label="Высота (px)" prop="style.height">
             <el-input
-                placeholder="240"
+                :placeholder="form.style.width * 1.33 || 240"
                 v-model.number="form.style.height"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="11" :offset="2">
           <el-form-item label="Ширина (px)" prop="style.width">
             <el-input
-                placeholder="360"
+                :placeholder="form.style.height * 0.75 || 360"
                 v-model.number="form.style.width"></el-input>
           </el-form-item>
         </el-col>
@@ -212,23 +212,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 .form__btns__container {
   margin-top: 20px;
 
   display: flex;
   flex-wrap: wrap;
-}
-
-.form__btn {
-  margin-right: 12px;
-  margin-bottom: 12px;
-  margin-left: 0;
-  padding: 10px 14px;
-
-  display: flex;
-  align-items: center;
 }
 
 .form__btn:last-child {

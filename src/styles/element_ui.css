@@ -1,5 +1,15 @@
 /* override element-ui styles */
 
+.form__btn.el-button {
+    margin-right: 12px;
+    margin-bottom: 12px;
+    margin-left: 0;
+    padding: 10px 14px;
+
+    display: flex;
+    align-items: center;
+}
+
 .form__btn.el-button+.form__btn.el-button {
     margin-left: 0;
 }

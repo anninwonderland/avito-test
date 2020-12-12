@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 .home__container {
   box-sizing: border-box;

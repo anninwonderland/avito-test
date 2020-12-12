@@ -10,7 +10,6 @@
 
 import { mapState } from 'vuex'
 import * as htmlToImage from 'html-to-image'
-import { toPng } from 'html-to-image'
 
 export default {
   name: 'Preview',
@@ -44,14 +43,72 @@ export default {
 
     },
     exportAs(format) {
-      const node = document.getElementById('banner');
+      const node = document.getElementById('banner')
+      switch (format) {
+        case 'PNG':
+          this.saveAsPNG(node)
+          break
+        case 'HTML':
+          this.copyAsHTML(node)
+          break
+        case 'JSON':
+          this.copyAsJSON()
+          break
+        default:
+          return
+      }
+    },
 
+    saveAsPNG(node) {
       const self = this
 
       htmlToImage.toPng(node)
           .then((dataUrl) => {
             self.download(dataUrl)
           })
+    },
+    copyAsHTML(node) {
+
+      this.setStyle(node)
+
+      const el = document.createElement('textarea')
+      el.value = node.outerHTML
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+
+    },
+    setStyle(node) {
+      if (node.tagName) {
+        node.style.cssText += this.getStyleFromSheets(node)
+        node.childNodes.forEach(child => {
+          return  node.childNodes.length ? this.setStyle(child) : null
+        })
+      }
+    },
+    getStyleFromSheets(node){
+      const selector = `.${node.className} `
+      const componentStyles = [...document.styleSheets]
+          .map(styleSheet => [...styleSheet.cssRules]
+              .map(rule => rule.cssText)
+              .join('\n')
+          )
+          .filter(sheet => sheet.includes(selector))
+          .join('\n')
+
+      const nodeStyles = componentStyles.split('\n')
+          .filter(sheet => sheet.includes(selector))
+          .map(styleBite => styleBite
+              .replace(selector, '')
+              .replace(/[{}]/g, ''))
+              .filter(Boolean)
+              .join('')
+
+      return nodeStyles
+    },
+    copyAsJSON() {
+
     },
     download(dataUrl) {
       const a = document.createElement('a')
@@ -65,7 +122,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .banner__container {
   display: flex;
   justify-content: center;
@@ -74,7 +131,7 @@ export default {
 }
 
 .banner {
-  border-radius: 2%;
+  border-radius: 15px;
   border: 1px solid #DCDFE6;
 
   max-width: 100%;
@@ -91,14 +148,13 @@ export default {
 .banner__text {
   font-family: Helvetica, serif;
   font-weight: bold;
-  font-size: 4.5vh;
+  font-size: 1em;
   color: #FFFFFF;
-  text-align: right;
   white-space: pre-line;
   word-wrap: break-word;
 
   padding: 0 ;
-  margin: 24px;
+  margin: 40px 30px;
   width: calc(100% - 24px);
   max-width: calc(100% - 24px);
 
