@@ -1,8 +1,10 @@
 <template>
   <div class="banner__container">
-    <a id="banner" class="banner" :href="banner.link" target="_blank" @click.prevent="viewBanner">
-      <p class="banner__text">{{ banner.text }}</p>
-    </a>
+    <div class="banner__border">
+      <a id="banner" class="banner" :href="banner.link" target="_blank">
+        <p class="banner__text">{{ banner.text }}</p>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -36,24 +38,23 @@ export default {
       document.getElementById('banner').style.height = this.banner.style.height + 'px'
       document.getElementById('banner').style.width = this.banner.style.width + 'px'
       document.getElementById('banner').style.color = this.banner.style.color
-
       document.getElementById('banner').style['background-color'] = this.banner.style['background-color']
       document.getElementById('banner').style['background-image'] = this.banner.style['background-image']
     },
-    viewBanner() {
 
-    },
     exportAs(format) {
       const node = document.getElementById('banner')
+
       switch (format) {
         case 'PNG':
           this.saveAsPNG(node)
           break
         case 'HTML':
-          this.copyAsHTML(node)
+          this.setInlineStyle(node)
+          this.copyToClipBoard(node.outerHTML)
           break
         case 'JSON':
-          this.copyAsJSON()
+          this.copyToClipBoard(JSON.stringify(this.banner))
           break
         default:
           return
@@ -61,25 +62,21 @@ export default {
     },
 
     saveAsPNG(node) {
-      const self = this
-
       htmlToImage.toPng(node)
-          .then((dataUrl) => {
-            self.download(dataUrl)
+          .then(function (dataUrl) {
+            return this.download(dataUrl)
           })
     },
-    copyAsHTML(node) {
-      this.setInlineStyle(node)
 
-      const el = document.createElement('textarea')
-      el.value = node.outerHTML
-
-      document.body.appendChild(el)
-      el.select()
-      document.execCommand('copy')
-      document.body.removeChild(el)
-
+    download(dataUrl) {
+      const a = document.createElement('a')
+      a.href = dataUrl
+      a.download = 'Banner'
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
     },
+
     setInlineStyle(node) {
       if (node.tagName) {
         node.style.cssText = this.getStyleFromSheets(node).concat(node.style.cssText)
@@ -88,6 +85,7 @@ export default {
         })
       }
     },
+
     getStyleFromSheets(node) {
       const selector = `.${node.className} `
       const componentStyles = [...document.styleSheets]
@@ -108,16 +106,17 @@ export default {
 
       return nodeStyles
     },
-    copyAsJSON() {
 
-    },
-    download(dataUrl) {
-      const a = document.createElement('a')
-      a.href = dataUrl
-      a.download = 'Banner'
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
+    copyToClipBoard(value) {
+      const el = document.createElement('textarea')
+      el.value = value
+
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+
+      this.$message.success('Скопировано в буфер обмена')
     }
   }
 }
@@ -130,10 +129,13 @@ export default {
 
   margin-top: 40px;
 }
+.banner__border {
+  border-radius: 15px;
+  border: 1px solid #DCDFE6;
+}
 
 .banner {
   border-radius: 15px;
-  border: 1px solid #DCDFE6;
 
   max-width: 100%;
   display: flex;

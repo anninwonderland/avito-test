@@ -72,7 +72,7 @@
               type="primary"
               class="form__btn"
               :icon="btn.icon"
-              @click.prevent="submit(btn.format)"
+              @click="submit(btn.format)"
           >{{ btn.text }}</el-button>
         </el-col>
       </el-row>
@@ -136,7 +136,7 @@ export default {
     }
   },
   created() {
-    this.fillForm()
+    this.form = cloneDeep(this.banner)
   },
   computed: {
     ...mapState({
@@ -145,18 +145,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      setBannerProp: 'banner/setBannerProp',
-      resetBanner: 'banner/resetBanner',
+      setBannerProp: 'banner/setBannerProp'
     }),
-
-    fillForm() {
-      this.form = cloneDeep(this.banner)
-    },
-
-    resetForm() {
-      this.resetBanner()
-      this.fillForm()
-    },
 
     validateText(rule, value, callback) {
       if (value === '') {
@@ -225,15 +215,6 @@ export default {
           return valid
       })
 
-    },
-    saveToPng() {
-      console.log('save to png')
-    },
-    copyToHTML() {
-      console.log('copy to html')
-    },
-    copyToJSON() {
-      console.log('copy to json')
     }
   }
 }
