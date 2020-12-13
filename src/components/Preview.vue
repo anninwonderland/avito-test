@@ -35,6 +35,7 @@ export default {
     renderBanner() {
       document.getElementById('banner').style.height = this.banner.style.height + 'px'
       document.getElementById('banner').style.width = this.banner.style.width + 'px'
+      document.getElementById('banner').style.color = this.banner.style.color
 
       document.getElementById('banner').style['background-color'] = this.banner.style['background-color']
       document.getElementById('banner').style['background-image'] = this.banner.style['background-image']
@@ -68,26 +69,26 @@ export default {
           })
     },
     copyAsHTML(node) {
-
-      this.setStyle(node)
+      this.setInlineStyle(node)
 
       const el = document.createElement('textarea')
       el.value = node.outerHTML
+
       document.body.appendChild(el)
       el.select()
       document.execCommand('copy')
       document.body.removeChild(el)
 
     },
-    setStyle(node) {
+    setInlineStyle(node) {
       if (node.tagName) {
-        node.style.cssText += this.getStyleFromSheets(node)
+        node.style.cssText = this.getStyleFromSheets(node).concat(node.style.cssText)
         node.childNodes.forEach(child => {
-          return  node.childNodes.length ? this.setStyle(child) : null
+          return node.childNodes.length ? this.setInlineStyle(child) : null
         })
       }
     },
-    getStyleFromSheets(node){
+    getStyleFromSheets(node) {
       const selector = `.${node.className} `
       const componentStyles = [...document.styleSheets]
           .map(styleSheet => [...styleSheet.cssRules]
@@ -102,8 +103,8 @@ export default {
           .map(styleBite => styleBite
               .replace(selector, '')
               .replace(/[{}]/g, ''))
-              .filter(Boolean)
-              .join('')
+          .filter(Boolean)
+          .join('')
 
       return nodeStyles
     },
@@ -149,11 +150,11 @@ export default {
   font-family: Helvetica, serif;
   font-weight: bold;
   font-size: 1em;
-  color: #FFFFFF;
+  color: inherit;
   white-space: pre-line;
   word-wrap: break-word;
 
-  padding: 0 ;
+  padding: 0;
   margin: 40px 30px;
   width: calc(100% - 24px);
   max-width: calc(100% - 24px);

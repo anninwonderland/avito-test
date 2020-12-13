@@ -29,11 +29,27 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-col>
+        <el-col :span="11">
           <el-form-item label="Цвет фона" prop="style.background-color">
             <el-input
                 placeholder="#000000 или rgb(0, 0, 0)"
                 v-model="form.style['background-color']"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="11" :offset="2">
+          <el-form-item label="Цвет текста" prop="style.color">
+            <el-input
+                placeholder="#000000 или rgb(0, 0, 0)"
+                v-model="form.style.color"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col>
+          <el-form-item label="Ссылка" prop="link">
+            <el-input
+                placeholder="url"
+                v-model="form.link"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -107,6 +123,12 @@ export default {
         'style.background-color': [
           { required: true, validator: this.validateColor, trigger: 'blur' }
         ],
+        'style.color': [
+          { required: true, validator: this.validateColor, trigger: 'blur' }
+        ],
+        link: [
+          { required: false, validator: this.validateUrl, trigger: 'blur' }
+        ],
         'style.background-image': [
           { required: false, validator: this.validateImage, trigger: 'blur' }
         ]
@@ -152,8 +174,8 @@ export default {
       if (value != parseInt(value)) {
         return callback(new Error('Введите целое число'))
       }
-      if (value < 100 || value > 600) {
-        return callback(new Error('Введите значение от 100px до 600px'))
+      if (value < 100 || value > 400) {
+        return callback(new Error('Введите значение от 100px до 400px'))
       }
       this.setBannerProp({ property: rule.field, value })
       return callback()
@@ -170,11 +192,16 @@ export default {
       return callback()
     },
 
-    validateImage(rule, value, callback) {
-      if (value === '') {
-        this.setBannerProp({ property: rule.field, value: value })
-        return callback()
+    validateUrl(rule, value, callback) {
+      if (!regexp.URL.test(value)) {
+        return callback(new Error('Допустимый формат: url'))
       }
+
+      this.setBannerProp({ property: rule.field, value: value })
+      return callback()
+    },
+
+    validateImage(rule, value, callback) {
       if (!regexp.GRADIENT.test(value) && !regexp.URL.test(value) && !regexp.DATA_URI.test(value)) {
         return callback(new Error('Допустимый формат: url, dataURI, linear-gradient(℃, rgba), radial-gradient(circle, rgba)'))
       }
@@ -184,7 +211,7 @@ export default {
     },
 
     formatValue(value) {
-      if (value.startsWith('linear-gradient') || value.startsWith('radial-gradient')) {
+      if (value.startsWith('linear-gradient') || value.startsWith('radial-gradient') || value.trim() == '') {
         return value
       }
       return `url(${value})`

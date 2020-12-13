@@ -2,10 +2,11 @@ import cloneDeep from 'lodash.clonedeep'
 
 const state = () => ({
     text: 'hello, world!',
-    link: '#',
+    link: '',
     style: {
         width: 240,
         height: 320,
+        color: '#FFFFFF',
         'background-color': '#EEEEEE',
         'background-image': ''
     }
