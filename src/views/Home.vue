@@ -43,6 +43,9 @@ export default {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  height: 100%;
+
+  background-color: $basic-bg-color;
 }
 
 .home__header {
@@ -80,7 +83,6 @@ export default {
 
 .home__main {
   padding: 30px 0 90px;
-  background-color: $basic-bg-color;
 }
 
 @media (max-width: $xs-screen) {
