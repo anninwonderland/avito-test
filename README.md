@@ -22,14 +22,14 @@ This field is **required**.
 ###### Example: 
 
 _____________________
-#####📐 Height and width 
+##### 📐 Height and width 
 The basic banner size is 320px * 240px. You can edit these values *(placeholder will give you a hint about value which fits the aspect ratio 3:4)*
 
 These fields are **required**.
 
 ###### Example:
 _____________________
-#####🎨 Color
+##### 🎨 Color
 Background and text colors ara also predefined. *Background color will be used as fallback in case of background image failure.*
 
 These fields are **required**.
