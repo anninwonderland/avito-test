@@ -53,6 +53,7 @@ export default {
   padding: 25px 0;
 
   border-bottom: 1px solid $basic-grey-color;
+  background-color: white;
 }
 
 .home__header__title {
