@@ -1,12 +1,12 @@
 
 const state = {
     text: 'hello, world!',
-    link: '',
+    url: '',
     style: {
         width: 240,
         height: 320,
         color: '#FFFFFF',
-        'background-color': '#EEEEEE',
+        'background-color': '#49A9F8',
         'background-image': ''
     }
 }

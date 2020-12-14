@@ -1,19 +1,23 @@
-# banners-avito-test
+# Banner builder
+Created as a test assignment for the Avito internship program.
+Allows to set up banner configuration an export it.
 
-## Project setup
+## Installation
 ```
-npm install
+$ npm install && npm start
 ```
+It will run on port **localhost:3999**
 
-### Compiles and hot-reloads for development
+### Usage
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Technologies used
+Build with
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* [Vue.js](https://vuejs.org)
+* [Vuex](https://router.vuejs.org/)
+* [SASS (SCSS)](https://sass-lang.com/)
+* [ElementUI](https://element.eleme.io/#/en-US)
+* [Lodash](https://lodash.com/)

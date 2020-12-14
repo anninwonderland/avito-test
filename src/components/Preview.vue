@@ -1,8 +1,8 @@
 <template>
   <div class="banner__container">
     <div class="banner__border">
-      <a id="banner" class="banner" :href="banner.link" target="_blank">
-        <p class="banner__text">{{ banner.text }}</p>
+      <a id="banner" class="banner" :href="banner.url" target="_blank">
+        <p class="banner__text" :style="{fontSize: banner.style.width / 8 + 'px'}">{{ banner.text }}</p>
       </a>
     </div>
   </div>
@@ -62,9 +62,10 @@ export default {
     },
 
     saveAsPNG(node) {
+      const self = this
       htmlToImage.toPng(node)
-          .then(function (dataUrl) {
-            return this.download(dataUrl)
+          .then((dataUrl) => {
+            this.download(dataUrl)
           })
     },
 
@@ -122,7 +123,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import 'src/styles/basics';
+
 .banner__container {
   display: flex;
   justify-content: center;
@@ -130,12 +133,12 @@ export default {
   margin-top: 40px;
 }
 .banner__border {
-  border-radius: 15px;
-  border: 1px solid #DCDFE6;
+  border-radius: 9px;
+  border: 1px solid $basic-grey-color;
 }
 
 .banner {
-  border-radius: 15px;
+  border-radius: 8px;
 
   max-width: 100%;
   display: flex;
@@ -149,15 +152,15 @@ export default {
 }
 
 .banner__text {
-  font-family: Helvetica, serif;
+  font-family: $basic-font-family;
   font-weight: bold;
-  font-size: 1em;
+  font-size: 18px;
   color: inherit;
   white-space: pre-line;
   word-wrap: break-word;
 
   padding: 0;
-  margin: 40px 30px;
+  margin: 10%;
   width: calc(100% - 24px);
   max-width: calc(100% - 24px);
 
@@ -174,7 +177,7 @@ export default {
   hyphens: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $xs-screen) {
   .banner__container {
     margin-top: 0;
     margin-bottom: 40px;

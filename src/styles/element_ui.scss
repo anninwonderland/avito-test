@@ -1,5 +1,4 @@
 /* override element-ui styles */
-
 .form__btn.el-button {
     margin-right: 12px;
     margin-bottom: 12px;
@@ -14,15 +13,17 @@
     margin-left: 0;
 }
 
-.form__btn i {
-    margin-right: 6px;
-}
+.form__btn  {
+    i {
+        margin-right: 6px;
+    }
 
-.form__btn span {
-    max-width: 100%;
-    margin-left: 12px;
+    span {
+        max-width: 100%;
+        margin-left: 12px;
 
-    white-space: pre-line;
-    line-height: 18px;
-    text-align: left;
+        white-space: pre-line;
+        line-height: 18px;
+        text-align: left;
+    }
 }

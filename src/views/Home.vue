@@ -2,11 +2,13 @@
   <div class="home__container">
     <el-row class="home__header">
       <el-col :span="9" :offset="2" :xs="{span: 20}">
-        <h1 class="home__header__title">Конструктор баннеров</h1>
+        <h1 class="home__header__title">Banner builder</h1>
       </el-col>
       <el-col :span="10" :offset="1" :xs="{span: 20, offset: 2}">
         <p class="home__header__caption">Тестовое задание на стажировку в Авито.</p>
-        <p class="home__header__caption">Сделала Ракина А.С. 😛</p>
+        <p class="home__header__caption">Сделала
+          <a class="home__header__link" target="_blank" href="https://github.com/anninwonderland/cv/blob/main/Rakina_cv.pdf">Ракина А.</a>
+          😛</p>
       </el-col>
     </el-row>
 
@@ -34,7 +36,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import 'src/styles/basics';
 
 .home__container {
   box-sizing: border-box;
@@ -43,21 +46,22 @@ export default {
 }
 
 .home__header {
-  background-color: #EBEBEB;
-
   margin: 0;
   padding: 25px 0;
+
+  border-bottom: 1px solid $basic-grey-color;
 }
 
 .home__header__title {
-  font-family: Helvetica, serif;
+  font-family: $basic-font-family;
   font-size: 24px;
+  text-transform: uppercase;
 
   margin: 10px 0;
 }
 
 .home__header__caption {
-  font-family: Helvetica, serif;
+  font-family: $basic-font-family;
   font-size: 14px;
   line-height: 16px;
   text-align: end;
@@ -65,11 +69,21 @@ export default {
   margin: 4px 0;
 }
 
-.home__main {
-  margin: 40px 0 60px;
+.home__header__link {
+  color: $basic-dark-color;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $basic-accent-color;
+  }
 }
 
-@media (max-width: 768px) {
+.home__main {
+  padding: 30px 0 90px;
+  background-color: $basic-bg-color;
+}
+
+@media (max-width: $xs-screen) {
   .home__header__caption {
     text-align: start;
   }

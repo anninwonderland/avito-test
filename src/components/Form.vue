@@ -46,10 +46,10 @@
       </el-row>
       <el-row>
         <el-col>
-          <el-form-item label="Ссылка" prop="link">
+          <el-form-item label="Ссылка" prop="url">
             <el-input
                 placeholder="url"
-                v-model="form.link"></el-input>
+                v-model="form.url"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -94,43 +94,40 @@ export default {
       buttons: [
         {
           text: 'Сохранить как png',
-          action: this.saveToPng,
           format: 'PNG',
           icon: 'el-icon-download'
         },
         {
           text: 'Скопировать html-разметку в буфер обмена',
-          action: this.copyToHTML,
           format: 'HTML',
           icon: 'el-icon-edit-outline'
         }, {
           text: 'Скопировать JSON-конфигурацию в буфер обмена',
-          action: this.copyToJSON,
           format: 'JSON',
           icon: 'el-icon-s-operation'
         }
       ],
       rules: {
         text: [
-          { required: true, validator: this.validateText, trigger: 'blur' }
+          { required: true, validator: this.validateText, trigger: 'change' }
         ],
         'style.height': [
-          { required: true, validator: this.validateNumber, trigger: 'blur' }
+          { required: true, validator: this.validateNumber, trigger: 'change' }
         ],
         'style.width': [
-          { required: true, validator: this.validateNumber, trigger: 'blur' }
+          { required: true, validator: this.validateNumber, trigger: 'change' }
         ],
         'style.background-color': [
-          { required: true, validator: this.validateColor, trigger: 'blur' }
+          { required: true, validator: this.validateColor, trigger: 'change' }
         ],
         'style.color': [
-          { required: true, validator: this.validateColor, trigger: 'blur' }
+          { required: true, validator: this.validateColor, trigger: 'change' }
         ],
-        link: [
-          { required: false, validator: this.validateUrl, trigger: 'blur' }
+        url: [
+          { required: false, validator: this.validateUrl, trigger: 'change' }
         ],
         'style.background-image': [
-          { required: false, validator: this.validateImage, trigger: 'blur' }
+          { required: false, validator: this.validateImage, trigger: 'change' }
         ]
       }
     }
@@ -220,20 +217,21 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import 'src/styles/basics';
 
 .form__btns__container {
   margin-top: 20px;
 
   display: flex;
   flex-wrap: wrap;
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
-.form__btn:last-child {
-  margin-right: 0;
-}
 
-@media (max-width: 768px) {
+@media (max-width: $xs-screen) {
   .form__btn {
     width: 100%;
 
