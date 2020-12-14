@@ -16,14 +16,14 @@
         <el-col :span="11">
           <el-form-item label="Высота (px)" prop="style.height">
             <el-input
-                :placeholder="form.style.width * 1.33 || 240"
+                :placeholder="ratioHeight"
                 v-model.number="form.style.height"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="11" :offset="2">
           <el-form-item label="Ширина (px)" prop="style.width">
             <el-input
-                :placeholder="form.style.height * 0.75 || 360"
+                :placeholder="ratioWidth"
                 v-model.number="form.style.width"></el-input>
           </el-form-item>
         </el-col>
@@ -138,7 +138,13 @@ export default {
   computed: {
     ...mapState({
       banner: state => state.banner
-    })
+    }),
+    ratioWidth() {
+      return Math.round(this.form.style.height * 0.75) || 360
+    },
+    ratioHeight(){
+      return Math.round(this.form.style.width * 1.33) || 240
+    }
   },
   methods: {
     ...mapActions({
