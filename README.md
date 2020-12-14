@@ -13,9 +13,9 @@ To edit the banner fill the form fields and press appropriate button.
 
 ![App interface](/rm_images/app.png)
 
-####Banner parameters
+#### Banner parameters
 
-#####📃 Text
+##### 📃 Text
 Enter banner content. Try to keep it short, otherwise the text will be partly hidden.
 
 This field is **required**.
@@ -26,7 +26,7 @@ Hello, world!
 ```
 
 _____________________
-#####📐 Height and width 
+##### 📐 Height and width 
 The basic banner size is 320px * 240px. You can edit these values *(placeholder will give you a hint about value which fits the aspect ratio 3:4)*
 
 These fields are **required**.
@@ -37,7 +37,7 @@ Height: 360px
 Width: 240px
 ```
 _____________________
-#####🎨 Color
+##### 🎨 Color
 Background and text colors ara also predefined. *Background color will be used as fallback in case of background image failure.*
 Use HEX or RGB(a) format.
 
@@ -50,7 +50,7 @@ rgba(73, 169, 248) – RGB
 rgba(73, 169, 248, 1) – RGBa
 ```
 _____________________
-#####🔗 URL
+##### 🔗 URL
 On banner click redirect to defined url. *Works only with exported layout code.*
 
 This field is **optional**.
@@ -61,7 +61,7 @@ https://imgur.com/K3ituxT
 ```
 
 _____________________
-#####🍭 Print
+##### 🍭 Print
 Image or gradient can be set as banner print.
 Set link to chosen image or paste raw image code with data uri. Please fit the gradient format to one mentioned in example.
 
