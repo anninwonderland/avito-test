@@ -1,6 +1,6 @@
 # Banner builder
 Created as a test assignment for the Avito internship program.
-Allows to set up banner configuration an export it.
+Allows to set up banner configuration and export it.
 
 ## Installation
 ```
@@ -9,14 +9,15 @@ $ npm install && npm start
 
 ### Usage
 The app is running on port **3999**.
-To edit the banner fill the form fields and press appropriate button.
+To edit the banner fill the form fields and press the appropriate button.
 
 ![App interface](/rm_images/app.png)
 
-#### Banner parameters
+Banner parameters
+==
 
 ##### 📃 Text
-Enter banner content. Try to keep it short, otherwise the text will be partly hidden.
+Enter banner content. Try to keep it short, otherwise, the text will be partly hidden.
 
 This field is **required**.
 
@@ -27,7 +28,7 @@ Hello, world!
 
 _____________________
 ##### 📐 Height and width 
-The basic banner size is 320px * 240px. You can edit these values *(placeholder will give you a hint about value which fits the aspect ratio 3:4)*
+The default banner size is 320px * 240px. You can edit these values *(placeholder will give you a hint about the value which fits the aspect ratio 3:4)*.
 
 These fields are **required**.
 
@@ -38,7 +39,7 @@ Width: 240px
 ```
 _____________________
 ##### 🎨 Color
-Background and text colors ara also predefined. *Background color will be used as fallback in case of background image failure.*
+Background and text colors are also predefined. *The background color will be used as a fallback in case of background image failure.*
 Use HEX or RGB(a) format.
 
 These fields are **required**.
@@ -51,7 +52,7 @@ rgba(73, 169, 248, 1) – RGBa
 ```
 _____________________
 ##### 🔗 URL
-On banner click redirect to defined url. *Works only with exported layout code.*
+Clicking on banner redirects to a defined url. *Works only with exported layout code.*
 
 This field is **optional**.
 
@@ -62,8 +63,8 @@ https://imgur.com/K3ituxT
 
 _____________________
 ##### 🍭 Print
-Image or gradient can be set as banner print.
-Set link to chosen image or paste raw image code with data uri. Please fit the gradient format to one mentioned in example.
+Image or gradient can be set as a banner print.
+Set the link to a chosen image or paste raw image code with data URI. Please fit the gradient format to the one mentioned in the example.
 
 This field is **optional**.
 
@@ -75,7 +76,8 @@ linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%) – linear gra
 radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%) – radial gradient
 ```
 
-#### Export abilities
+Export
+==
 
 To export your banner choose format and click the appropriate button.
 
@@ -85,7 +87,7 @@ The banner will be downloaded as *banner.png*.
 _____________________
 
 ##### 📝 Copy layout to clipboard as HTML
-HTML code will be copied to clipboard.
+HTML code will be copied to the clipboard.
 
 ###### Output example: 
 
@@ -97,7 +99,7 @@ HTML code will be copied to clipboard.
 _____________________
 
 ##### 🖇 Copy banner configuration to clipboard as JSON
-The banner form will be copied as configuration in JSON format.
+The banner form will be copied as the configuration in JSON format.
 
 ###### Output example: 
 ```json
