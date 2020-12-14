@@ -16,7 +16,7 @@ To edit the banner fill the form fields and press the appropriate button.
 Banner parameters
 ==
 
-##### 📃 Text
+#### 📃 Text
 Enter banner content. Try to keep it short, otherwise, the text will be partly hidden.
 
 This field is **required**.
@@ -27,7 +27,7 @@ Hello, world!
 ```
 
 _____________________
-##### 📐 Height and width 
+#### 📐 Height and width 
 The default banner size is 320px * 240px. You can edit these values *(placeholder will give you a hint about the value which fits the aspect ratio 3:4)*.
 
 These fields are **required**.
@@ -38,7 +38,7 @@ Height: 360px
 Width: 240px
 ```
 _____________________
-##### 🎨 Color
+#### 🎨 Color
 Background and text colors are also predefined. *The background color will be used as a fallback in case of background image failure.*
 Use HEX or RGB(a) format.
 
@@ -51,7 +51,7 @@ rgba(73, 169, 248) – RGB
 rgba(73, 169, 248, 1) – RGBa
 ```
 _____________________
-##### 🔗 URL
+#### 🔗 URL
 Clicking on banner redirects to a defined url. *Works only with exported layout code.*
 
 This field is **optional**.
@@ -62,7 +62,7 @@ https://imgur.com/K3ituxT
 ```
 
 _____________________
-##### 🍭 Print
+#### 🍭 Print
 Image or gradient can be set as a banner print.
 Set the link to a chosen image or paste raw image code with data URI. Please fit the gradient format to the one mentioned in the example.
 
@@ -82,11 +82,11 @@ Export
 To export your banner choose format and click the appropriate button.
 
 
-##### 🏞 Save as PNG
+#### 🏞 Save as PNG
 The banner will be downloaded as *banner.png*.
 _____________________
 
-##### 📝 Copy layout to clipboard as HTML
+#### 📝 Copy layout to clipboard as HTML
 HTML code will be copied to the clipboard.
 
 ###### Output example: 
@@ -98,7 +98,7 @@ HTML code will be copied to the clipboard.
 ```
 _____________________
 
-##### 🖇 Copy banner configuration to clipboard as JSON
+#### 🖇 Copy banner configuration to clipboard as JSON
 The banner form will be copied as the configuration in JSON format.
 
 ###### Output example: 
