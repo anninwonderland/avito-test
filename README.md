@@ -13,8 +13,7 @@ To edit the banner fill the form fields and press the appropriate button.
 
 ![App interface](/rm_images/app.png)
 
-Banner parameters
-==
+## Banner parameters
 
 #### 📃 Text
 Enter banner content. Try to keep it short, otherwise, the text will be partly hidden.
@@ -73,11 +72,10 @@ This field is **optional**.
 https://imgur.com/K3ituxT – url
 data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7 – data uri
 linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%) – linear gradient
-radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%) – radial gradient
+radial-gradient(circle, rgb(2,0,36) 0%, rgb(250, 18, 155) 60%, rgb(0,212,255) 100%) – radial gradient
 ```
 
-Export
-==
+## Export
 
 To export your banner choose format and click the appropriate button.
 
