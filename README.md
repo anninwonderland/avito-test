@@ -12,9 +12,9 @@ The app is running on port **3999**.
 To edit the banner fill the form fields and press appropriate button.
 
 
-####Banner parameters
+#### Banner parameters
 
-#####📃 Text
+##### 📃 Text
 Enter banner content.
 
 This field is **required**.
@@ -37,7 +37,7 @@ These fields are **required**.
 ###### Example: 
 
 _____________________
-#####🔗 URL
+##### 🔗 URL
 On banner click redirect to defined url. *Works only with exported layout code.*
 
 This field is **optional**.
@@ -45,7 +45,7 @@ This field is **optional**.
 ###### Example: 
 
 _____________________
-#####🍭 Print
+##### 🍭 Print
 Image or gradient can be set as banner print.
 Set link to chosen image or paste raw image code with data uri.
 
